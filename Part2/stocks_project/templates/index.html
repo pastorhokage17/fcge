@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %} 
+    <div>
+      <h1>Hi {{ user.username }}!</h1>
+    </div>
+    <div>
+      <h3>Stock Prices:</h3>
+      <ul>
+        {% for stock in  stocks %}
+          <li>
+            {{ stock.name }} ----- ${{stock.price}}
+          </li>
+        {% endfor %}
+      </ul>
+      <div>
+      {% for inv in investor %}
+        <div> 
+          <h3>Current account balance: ${{ inv.balance }} </h3>
+          <h3>Total amount of invested stocks: ${{ inv.total_stock_amount }} </h3>
+          <p>Stocks currently invested:</p>        
+        </div>
+        <div>
+          <ul>
+            {% for item in so %}
+              <li>
+                ({{item.quantity}}) {{item.stock.name}}
+              </li>          
+            {% endfor %}
+            <ul>
+        </div>     
+      {% endfor %}      
+      </div>
+      <div>
+        <button type="submit" name="reset">Reset Account</button>
+      </div>
+      <div>
+        <br>
+        <a href="{% url 'trade' %}">Buy/Sell Stocks</a>
+      </div>
+      <br>
+      <a href="admin/logout">Log Out</a>
+      <div>
+    </div>
+  </form>
+  {% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login-url' %}">Log In</a>
+{% endif %}
+</body>
+</html>

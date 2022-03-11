@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+    </div>
+    <div>
+      <h3>Buy Stocks</h3>
+      <div>
+        <h4>Stock A ($20 per stock)
+          <input type="number" placeholder="0" name="buyStockA">
+
+        </h4>          
+      </div>
+      <div>
+        <h4>Stock B ($50 per stock)
+          <input type="number" placeholder="0"  name="buyStockB">
+
+        </h4>          
+      </div>
+      <div>
+        <h4>Stock C ($100 per stock)
+          <input type="number" placeholder="0"  name="buyStockC">
+          
+        </h4>          
+      </div>
+      <button type="sumbit" name="buy">Buy</button>
+      <button type="sumbit" name="sell">Sell</button>
+    </form>
+    <div>
+        <br>
+        <a href="{% url 'index' %}">Go back</a>
+    </div>
+</body>
+</html>
